@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FlashUSDT Web Panel</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
 </head>
 <body>
   <div class="container">
-    <img src="tether-usdt-logo.png" alt="FlashUSDT Logo" class="logo">
+    <img src="tether-usdt-logo.png" alt="FlashUSDT Logo" class="logo" />
     <h1>FlashUSDT Web Panel</h1>
 
     <button id="connectWallet">🔗 Connect Wallet</button>
 
     <div class="card">
       <h2>Mint Tokens</h2>
-      <input type="text" id="mintAmount" placeholder="Amount to Mint">
+      <input type="text" id="mintAmount" placeholder="Amount to Mint" />
       <button onclick="mintTokens()">Mint</button>
     </div>
 
     <div class="card">
       <h2>Transfer Tokens</h2>
-      <input type="text" id="transferTo" placeholder="Recipient Address">
-      <input type="text" id="transferAmount" placeholder="Amount">
+      <input type="text" id="transferTo" placeholder="Recipient Address" />
+      <input type="text" id="transferAmount" placeholder="Amount" />
       <button onclick="transferTokens()">Transfer</button>
     </div>
 
     <div class="card">
       <h2>Set Expiry</h2>
-      <input type="text" id="expiryAddress" placeholder="User Address">
-      <input type="text" id="expiryDays" placeholder="Days to Expire">
+      <input type="text" id="expiryAddress" placeholder="User Address" />
+      <input type="text" id="expiryDays" placeholder="Days to Expire" />
       <button onclick="setExpiry()">Set Expiry</button>
     </div>
   </div>
