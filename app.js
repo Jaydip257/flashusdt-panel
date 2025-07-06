@@ -1,38 +1,63 @@
 const CONTRACT_ADDRESS = "0x8C43FCA6385e1D2714f2546188cEC628D981644b";
-const CONTRACT_ABI = [ /* 🔥 Paste your full ABI here from BscScan */ ];
+const CONTRACT_ABI = [ 
+  // Paste full ABI here from BscScan
+];
 
 let web3;
-let user;
 let contract;
 
 async function connectWallet() {
   if (window.ethereum) {
-    web3 = new Web3(window.ethereum);
-    await window.ethereum.enable();
-    const accounts = await web3.eth.getAccounts();
-    user = accounts[0];
-    contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
-    alert("Connected: " + user);
+    try {
+      web3 = new Web3(window.ethereum);
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
+      alert("✅ Wallet Connected");
+    } catch (err) {
+      alert("❌ Connection Failed: " + err.message);
+    }
   } else {
-    alert("Please install MetaMask to use this feature.");
+    alert("🦊 Please install MetaMask!");
   }
 }
 
-async function mintToken() {
-  const to = document.getElementById("mintAddress").value;
+async function mintTokens() {
   const amount = document.getElementById("mintAmount").value;
-  await contract.methods.mint(to, amount).send({ from: user });
+  if (!amount) return alert("Enter amount to mint");
+  const accounts = await web3.eth.getAccounts();
+  const value = web3.utils.toWei(amount, "mwei");
+  try {
+    await contract.methods.mint(accounts[0], value).send({ from: accounts[0] });
+    alert("✅ Mint Successful");
+  } catch (err) {
+    alert("❌ Mint Failed: " + err.message);
+  }
 }
 
-async function transferToken() {
-  const to = document.getElementById("transferAddress").value;
+async function transferTokens() {
+  const to = document.getElementById("recipient").value;
   const amount = document.getElementById("transferAmount").value;
-  await contract.methods.transfer(to, amount).send({ from: user });
+  if (!to || !amount) return alert("Fill all transfer fields");
+  const accounts = await web3.eth.getAccounts();
+  const value = web3.utils.toWei(amount, "mwei");
+  try {
+    await contract.methods.transfer(to, value).send({ from: accounts[0] });
+    alert("✅ Transfer Successful");
+  } catch (err) {
+    alert("❌ Transfer Failed: " + err.message);
+  }
 }
 
 async function setExpiry() {
-  const addr = document.getElementById("expiryAddress").value;
+  const user = document.getElementById("expiryUser").value;
   const days = document.getElementById("expiryDays").value;
-  const expiry = Math.floor(Date.now() / 1000) + (days * 86400);
-  await contract.methods.setExpiry(addr, expiry).send({ from: user });
+  if (!user || !days) return alert("Fill expiry fields");
+  const accounts = await web3.eth.getAccounts();
+  const expiryTimestamp = Math.floor(Date.now() / 1000) + (days * 86400);
+  try {
+    await contract.methods.setExpiry(user, expiryTimestamp).send({ from: accounts[0] });
+    alert("✅ Expiry Set");
+  } catch (err) {
+    alert("❌ Expiry Failed: " + err.message);
+  }
 }
