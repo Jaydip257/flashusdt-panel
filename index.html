@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlashUSDT WebPanel</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="FlashUSDT Logo" class="logo">
+    <h1>FlashUSDT Control Panel</h1>
+
+    <button onclick="connectWallet()">🔗 Connect Wallet</button>
+
+    <div class="section">
+      <h3>💸 Mint</h3>
+      <input type="text" id="mintAddress" placeholder="Receiver Address">
+      <input type="number" id="mintAmount" placeholder="Amount (USDT)">
+      <button onclick="mintToken()">Mint Token</button>
+    </div>
+
+    <div class="section">
+      <h3>🔁 Transfer</h3>
+      <input type="text" id="transferAddress" placeholder="Receiver Address">
+      <input type="number" id="transferAmount" placeholder="Amount (USDT)">
+      <button onclick="transferToken()">Transfer</button>
+    </div>
+
+    <div class="section">
+      <h3>⏳ Set Expiry</h3>
+      <input type="text" id="expiryAddress" placeholder="User Address">
+      <input type="number" id="expiryDays" placeholder="Days (e.g. 365)">
+      <button onclick="setExpiry()">Set Expiry</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
