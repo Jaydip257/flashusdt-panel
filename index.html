@@ -1,41 +1,41 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlashUSDT WebPanel</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlashUSDT Panel</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <img src="logo.png" alt="FlashUSDT Logo" class="logo">
-    <h1>FlashUSDT Control Panel</h1>
+    <img src="tether-usdt-logo.png" alt="FlashUSDT Logo" class="logo" />
+    <h1>FlashUSDT Web Panel</h1>
 
-    <button onclick="connectWallet()">🔗 Connect Wallet</button>
+    <button id="connectWallet">🔌 Connect Wallet</button>
 
-    <div class="section">
-      <h3>💸 Mint</h3>
-      <input type="text" id="mintAddress" placeholder="Receiver Address">
-      <input type="number" id="mintAmount" placeholder="Amount (USDT)">
-      <button onclick="mintToken()">Mint Token</button>
+    <div class="card">
+      <h2>Mint Tokens</h2>
+      <input type="number" id="mintAmount" placeholder="Amount to Mint" />
+      <button onclick="mintTokens()">Mint</button>
     </div>
 
-    <div class="section">
-      <h3>🔁 Transfer</h3>
-      <input type="text" id="transferAddress" placeholder="Receiver Address">
-      <input type="number" id="transferAmount" placeholder="Amount (USDT)">
-      <button onclick="transferToken()">Transfer</button>
+    <div class="card">
+      <h2>Transfer Tokens</h2>
+      <input type="text" id="recipient" placeholder="Recipient Address" />
+      <input type="number" id="transferAmount" placeholder="Amount" />
+      <button onclick="transferTokens()">Transfer</button>
     </div>
 
-    <div class="section">
-      <h3>⏳ Set Expiry</h3>
-      <input type="text" id="expiryAddress" placeholder="User Address">
-      <input type="number" id="expiryDays" placeholder="Days (e.g. 365)">
+    <div class="card">
+      <h2>Set Expiry</h2>
+      <input type="text" id="expiryUser" placeholder="User Address" />
+      <input type="number" id="expiryDays" placeholder="Days to Expire" />
       <button onclick="setExpiry()">Set Expiry</button>
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
